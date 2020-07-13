@@ -42,4 +42,5 @@ public class UserService {
     public void update(User user) {
         checkNotFoundWithId(repository.save(user), user.getId());
     }
+
 }

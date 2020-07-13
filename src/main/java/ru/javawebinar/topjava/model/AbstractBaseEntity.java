@@ -23,4 +23,5 @@ public abstract class AbstractBaseEntity {
     public String toString() {
         return getClass().getSimpleName() + ":" + id;
     }
+
 }

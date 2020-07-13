@@ -50,6 +50,7 @@ public class MealTo {
                 ", calories=" + calories +
                 ", excess=" + excess +
                 '}';
+
     }
 }
 

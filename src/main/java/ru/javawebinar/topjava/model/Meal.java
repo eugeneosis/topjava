@@ -64,6 +64,7 @@ public class Meal {
                 ", description='" + description + '\'' +
                 ", calories=" + calories +
                 '}';
+
     }
 }
 

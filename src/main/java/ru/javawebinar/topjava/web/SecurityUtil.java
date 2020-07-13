@@ -12,3 +12,4 @@ public class SecurityUtil {
         return DEFAULT_CALORIES_PER_DAY;
     }
 }
+

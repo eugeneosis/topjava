@@ -49,3 +49,4 @@ public abstract class AbstractUserController {
         return service.getByEmail(email);
     }
 }
+

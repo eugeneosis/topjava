@@ -20,3 +20,4 @@ public class ProfileRestController extends AbstractUserController {
         super.update(user, authUserId());
     }
 }
+

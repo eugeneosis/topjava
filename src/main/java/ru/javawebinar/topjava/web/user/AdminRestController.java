@@ -38,3 +38,4 @@ public class AdminRestController extends AbstractUserController {
         return super.getByMail(email);
     }
 }
+

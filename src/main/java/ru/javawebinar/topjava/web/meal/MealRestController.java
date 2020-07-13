@@ -6,3 +6,4 @@ public class MealRestController {
     private MealService service;
 
 }
+
