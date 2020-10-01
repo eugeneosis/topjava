@@ -44,7 +44,7 @@ public class Meal extends AbstractBaseEntity {
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
 //    @NotNull
-    private User user;
+    protected User user;
 
     public Meal() {
     }
