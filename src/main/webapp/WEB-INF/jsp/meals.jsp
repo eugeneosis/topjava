@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://topjava.javawebinar.ru/functions" %>
+
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
@@ -55,11 +56,9 @@
         <table class="table table-striped" id="datatable">
             <thead>
             <tr>
-                <th><spring:message code="meal.dateTime"/></th>
-                <th><spring:message code="meal.description"/></th>
-                <th><spring:message code="meal.calories"/></th>
-                <th></th>
-                <th></th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Calories</th>
             </tr>
             </thead>
             <c:forEach items="${meals}" var="meal">
@@ -93,7 +92,7 @@
                     <input type="hidden" id="id" name="id">
 
                     <div class="form-group">
-                        <label for="dateTime" class="col-form-label"><spring:message code="meal.dateTime"/></label>
+                        <label for="datetime" class="col-form-label"><spring:message code="meal.dateTime"/></label>
                         <input type="datetime-local" class="form-control" id="dateTime" name="dateTime"
                                placeholder="<spring:message code="meal.dateTime"/>">
                     </div>
@@ -126,4 +125,13 @@
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<script type="text/javascript">
+    const i18n = [];
+    i18n["addTitle"] = '<spring:message code="meal.add"/>';
+    i18n["editTitle"] = '<spring:message code="meal.edit"/>';
+
+    <c:forEach var="key" items='<%=new String[]{"common.deleted","common.saved","common.enabled","common.disabled","common.errorStatus","common.confirm"}%>'>
+    i18n["${key}"] = "<spring:message code="${key}"/>";
+    </c:forEach>
+</script>
 </html>

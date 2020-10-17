@@ -1,10 +1,13 @@
 package ru.javawebinar.topjava.service;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.repository.MealRepository;
+import ru.javawebinar.topjava.to.MealTo;
+import ru.javawebinar.topjava.util.MealsUtil;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,7 +21,7 @@ public class MealService {
 
     private final MealRepository repository;
 
-    public MealService(MealRepository repository) {
+    public MealService(@Qualifier("dataJpaMealRepository") MealRepository repository) {
         this.repository = repository;
     }
 

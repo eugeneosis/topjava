@@ -5,10 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.javawebinar.topjava.service.MealService;
+import ru.javawebinar.topjava.service.UserService;
 import ru.javawebinar.topjava.util.MealsUtil;
 
 @Controller
 public class RootController {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private MealService mealService;
@@ -29,9 +33,7 @@ public class RootController {
     }
 
     @GetMapping("/meals")
-    public String getMeals(Model model) {
-        model.addAttribute("meals",
-                MealsUtil.getTos(mealService.getAll(SecurityUtil.authUserId()), SecurityUtil.authUserCaloriesPerDay()));
+    public String getMeals() {
         return "meals";
     }
 }
