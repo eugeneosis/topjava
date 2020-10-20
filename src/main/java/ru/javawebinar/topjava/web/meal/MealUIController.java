@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.web.meal;
 
+import javassist.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.to.MealTo;
 import ru.javawebinar.topjava.util.ValidationUtil;
+import ru.javawebinar.topjava.util.exception.ErrorInfo;
+import ru.javawebinar.topjava.util.exception.ErrorType;
+import ru.javawebinar.topjava.web.ExceptionInfoHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -39,9 +44,11 @@ public class MealUIController extends AbstractMealController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createOrUpdate(@Valid Meal meal, BindingResult result) {
+    public ResponseEntity<String> createOrUpdate(@Valid @RequestBody Meal meal, BindingResult result) {
         if (result.hasErrors()) {
             // TODO change to exception handler
+            //throw new ExceptionInfoHandler().handleError("profile/meals", "Data Not Found");
+            ErrorInfo errorInfo = new ErrorInfo("profile/meals", ErrorType.DATA_NOT_FOUND, "Data Not Found");
             return ValidationUtil.getErrorResponse(result);
         }
         if (meal.isNew()) {

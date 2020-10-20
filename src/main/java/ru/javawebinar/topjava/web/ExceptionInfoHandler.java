@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import static ru.javawebinar.topjava.util.exception.ErrorType.*;
 
 @RestControllerAdvice(annotations = RestController.class)
+//Для классов помеченных как группы контролеров
 @Order(Ordered.HIGHEST_PRECEDENCE + 5)
 public class ExceptionInfoHandler {
     private static Logger log = LoggerFactory.getLogger(ExceptionInfoHandler.class);
@@ -35,7 +36,7 @@ public class ExceptionInfoHandler {
     }
 
     @ResponseStatus(value = HttpStatus.CONFLICT)  // 409
-    @ExceptionHandler(DataIntegrityViolationException.class)
+    @ExceptionHandler(DataIntegrityViolationException.class) //Для дублирования ключей
     public ErrorInfo conflict(HttpServletRequest req, DataIntegrityViolationException e) {
         return logAndGetErrorInfo(req, e, true, DATA_ERROR);
     }
@@ -46,7 +47,7 @@ public class ExceptionInfoHandler {
         return logAndGetErrorInfo(req, e, false, VALIDATION_ERROR);
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)   // Все эксепшены
     @ExceptionHandler(Exception.class)
     public ErrorInfo handleError(HttpServletRequest req, Exception e) {
         return logAndGetErrorInfo(req, e, true, APP_ERROR);
